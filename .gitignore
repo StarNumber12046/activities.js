@@ -1,0 +1,60 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies
+**/node_modules
+webui/.pnp
+webui/.pnp.js
+webui/.yarn/install-state.gz
+
+# testing
+webui/coverage
+
+# next.js
+webui/.next/
+webui/out/
+
+# production
+webui/build
+
+# misc
+**/.DS_Store
+**/*.pem
+
+# debug
+webui/npm-debug.log*
+webui/yarn-debug.log*
+webui/yarn-error.log*
+
+# local env files
+webui/.env*.local
+
+# vercel
+webui/.vercel
+
+# typescript
+webui/*.tsbuildinfo
+webui/next-env.d.ts
+
+# Expo
+mobile/.expo/
+mobile/dist/
+mobile/web-build/
+
+# Native
+mobile/*.orig.*
+mobile/*.jks
+mobile/*.p8
+mobile/*.p12
+mobile/*.key
+mobile/*.mobileprovision
+
+# Metro
+mobile/.metro-health-check*
+
+# debug
+mobile/npm-debug.*
+mobile/yarn-debug.*
+mobile/yarn-error.*
+
+# typescript
+mobile/*.tsbuildinfo
