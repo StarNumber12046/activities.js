@@ -26,7 +26,7 @@ webui/yarn-debug.log*
 webui/yarn-error.log*
 
 # local env files
-webui/.env*.local
+**/.env*.local
 
 # vercel
 webui/.vercel
