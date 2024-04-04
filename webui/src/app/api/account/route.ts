@@ -54,3 +54,43 @@ export async function PUT(request: Request) {
     },
   });
 }
+
+export async function DELETE(request: Request) {
+  if (!request.headers.get("email") || !request.headers.get("password")) {
+    return new Response("Missing email or password", { status: 400 });
+  }
+  const hashedPassword = bcrypt.hashSync(
+    request.headers.get("password") ?? "",
+    SALT
+  );
+  let user = await prisma.user.findUnique({
+    where: {
+      email: request.headers.get("email")?.toString(),
+      password: hashedPassword
+    }
+  })
+  if (user == null) {
+    return new Response("Invalid email or password", { status: 401 });
+  }
+
+  await prisma.authToken.deleteMany({
+    where: {
+      ownerId: user.id
+    }
+  })
+  await prisma.activity.deleteMany({
+    where: {
+      userId: user.id
+    }
+  })
+  await prisma.user.delete({
+    where: {
+      id: user.id
+    }
+  })
+  return new Response(JSON.stringify({ status: "success" }), {
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+}
