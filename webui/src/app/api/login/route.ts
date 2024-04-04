@@ -48,5 +48,4 @@ export async function POST(request: Request) {
             'Content-Type': 'application/json',
         }
     });
-    return new Response('Hello, Next.js!');
 }
