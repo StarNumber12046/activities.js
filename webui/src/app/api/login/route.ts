@@ -30,7 +30,7 @@ export async function POST(request: Request) {
     })
 
     if (user == null) {
-        return new Response('Invalid email or password', { status: 401 });
+        return new Response('Invalid email or password!', { status: 401 });
     }
 
     const token = jwt.sign({
