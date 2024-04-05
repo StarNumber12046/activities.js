@@ -18,6 +18,7 @@ const SALT = Buffer.from(process.env.SALT, 'base64').toString()
 
 export async function POST(request: Request) {
     if (!request.headers.get('email') || !request.headers.get('password')) {
+        console.log('Missing email or password. Headers: ', request.headers);
         return new Response('Missing email or password', { status: 400 });
     }
     const hashedPassword = bcrypt.hashSync(request.headers.get('password') ?? '', SALT);
@@ -27,6 +28,7 @@ export async function POST(request: Request) {
             password: hashedPassword
         }
     })
+    
     if (user == null) {
         return new Response('Invalid email or password', { status: 401 });
     }
@@ -43,7 +45,7 @@ export async function POST(request: Request) {
         }
     });
     
-    return new Response(JSON.stringify({ token }), {
+    return new Response(JSON.stringify({ token: token, status: 'success' }), {
         headers: {
             'Content-Type': 'application/json',
         }

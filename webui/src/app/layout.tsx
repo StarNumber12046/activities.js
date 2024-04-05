@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import { NavButton } from "@/components/NavButton"
+import { cookies } from "next/headers";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -16,7 +18,20 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+        <nav className="p-5 flex ">
+          <NavButton children="Home" href="/" />
+          <NavButton children="Dashboard" href="/dashboard" />
+          <NavButton
+            children={cookies().has("sessionToken") ? "Account" : "Login"}
+            className="bg-blue-500 rounderd-lg"
+            alignRight={true}
+            href={cookies().has("sessionToken") ? "/account" : "/login"}
+          />
+        </nav>
+        {children}
+      </body>
     </html>
   );
 }
+

@@ -23,14 +23,14 @@ model AuthToken {
   id          String  @id @default(auto()) @map("_id") @db.ObjectId
   ownerId     String  @db.ObjectId
   owner       User @relation(fields: [ownerId], references: [id])
-  token       String
+  token       String @unique
 }
 
 model User {
   id          String   @id @default(auto()) @map("_id") @db.ObjectId
   email       String   @unique
   password    String
-  name        String?
+  name        String
   activities  Activity[]
   authTokens  AuthToken[]
 }
