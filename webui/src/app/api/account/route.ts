@@ -112,7 +112,7 @@ export async function GET(request: Request) {
       id: token.ownerId
     }
   })
-  
+
   if (user == null) {
     return new Response("Invalid token", { status: 401 });
   }

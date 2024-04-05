@@ -85,7 +85,7 @@ export default function AccountPage() {
         Cookies.remove('sessionToken');
         window.location.href = '/';
     }
-    
+
 
 
   return (

@@ -28,11 +28,11 @@ export async function POST(request: Request) {
             password: hashedPassword
         }
     })
-    
+
     if (user == null) {
         return new Response('Invalid email or password', { status: 401 });
     }
-    
+
     const token = jwt.sign({
         id: user.id,
         email: user.email,
@@ -44,7 +44,7 @@ export async function POST(request: Request) {
             token: bcrypt.hashSync(token, SALT),
         }
     });
-    
+
     return new Response(JSON.stringify({ token: token, status: 'success' }), {
         headers: {
             'Content-Type': 'application/json',

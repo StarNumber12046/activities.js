@@ -13,4 +13,3 @@ export default function Page({ children, title }: PageProps): ReactElement {
     </main>
   );
 }
-
